@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.views.generic import TemplateView,View,UpdateView,DeleteView
 from django.views.generic.detail import DetailView
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Contact
 from .forms import ContactForm
 class ContactView(TemplateView):
@@ -29,24 +29,14 @@ class EditContactView(UpdateView):
     template_name = 'contacts/edit_contact.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'contact'
-
+ 
     def form_valid(self, form):
         contact = form.save(commit=False)
         contact.save()
         return redirect('/Contact')
 
 class DeleteContactView(DetailView):
+	
 	model = Contact
-	template_name = 'contacts/confirm_delete_contact.html'
-	context_object_name = 'delete_contact'
-# class DeleteContactView(DeleteView):
-#     model = Contact
-#     fields = ('FirstName','LastName','Address','ContactNo')
-#     template_name = 'contacts/edit_contact.html'
-#     pk_url_kwarg = 'pk'
-#     context_object_name = 'contact'
-
-#     def form_valid(self, form):
-#         contact = form.save(commit=False)
-#         contact.delete()
-#         return redirect('/Contact')
+	template_name = 'contacts/edit_contact.html'
+	pk_url_kwarg = 'pk'
