@@ -36,7 +36,10 @@ class EditContactView(UpdateView):
         return redirect('/Contact')
 
 class DeleteContactView(DetailView):
-	
-	model = Contact
-	template_name = 'contacts/edit_contact.html'
-	pk_url_kwarg = 'pk'
+	# model = Contact
+	template_name = 'contacts/confirm_delete_contact.html'
+	def get_object(self):
+		pk_ = self.kwargs.get("pk")
+		# Contacts = Contact.objects.filter(pk=pk_)
+		Contacts =get_object_or_404(Contact,pk=pk_)
+		return Contacts

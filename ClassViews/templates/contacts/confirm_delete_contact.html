@@ -4,7 +4,7 @@
     <div class="container">
     <a href="/Contact" class="glyphicon glyphicon-chevron-left btn btn-success">Back</a>
     <!-- {% if user.id == contact.creator.id %} -->
-    {% for Contact in Contact %}
+    {% for Contact in Contacts %}
     <h6>You want to delete this?</h6>
         <p>Last Name:{{Contact.LastName}}</p>
         <p>First Name:{{Contact.FirstName}}</p>
@@ -16,4 +16,6 @@
     <!-- {% else %} -->
         <!-- <h1>NOT FOUND!</h1> -->
     <!-- {% endif %} -->
+    <p>asd</p>
+
 {% endblock %}
