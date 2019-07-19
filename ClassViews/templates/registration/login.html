@@ -3,17 +3,23 @@
 {% load crispy_forms_tags %}
 {% block title %}Login{% endblock %}
 {% block content %}
-	<div class="wrapper">
-   	<div class="col">
-   		</div>
-    	<div class="col">
-      		<form method="post">
-      			<h2>Login</h2>
-    			{% csrf_token %}
-    			{{ form|crispy }}
-    			<button type="submit" class="btn btn-primary float-right">Login</button>
-    			<a href="/signup" class="btn btn-secondary float-right">Sign up</a>
-  			</form>
-    	</div>
+	<div class="row">
+       	<div class="col">
+            <h1>Your Own Web Phone Book</h1>
+            <ul>
+                <li>Name</li>
+                <li>Adress</li>
+                <li>Contact No.</li>
+            </ul>
+       	</div>
+        <div class="col login">
+    		<form method="post">
+    			<h2>Login</h2>
+    		       {% csrf_token %}
+    		       {{ form|crispy }}
+    		       <button type="submit" class="btn btn-primary float-right">Login</button>
+    		       <a href="/signup" class="btn btn-secondary float-right">Sign up</a>
+    		</form>
+        </div>
   	</div>
 {% endblock %}
