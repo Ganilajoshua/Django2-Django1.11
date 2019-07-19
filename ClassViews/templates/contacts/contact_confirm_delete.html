@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+    <h1>Contact Delete</h1>
+	<form method="post">{% csrf_token %}
+	    Are you sure you want to delete "{{ obj.LastName }}" ?
+	    <input type="submit" value="Submit" />
+	</form>
+    </div>
+    <p>Hi</p>
+{% endblock %}

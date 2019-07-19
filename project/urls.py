@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
-from ClassViews.views import ContactView,NewContactView,EditContactView,DeleteContactView
+from ClassViews.views import (
+    ContactView,
+    NewContactView,
+    EditContactView,
+    ContactDelete,
+    )
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^Contact/$', ContactView.as_view()),
-    url(r'^contact/new/$', NewContactView.as_view()),
+    url(r'^Contact/$', ContactView.as_view(), name='list_contact'),
+    url(r'^contact/new/$', NewContactView.as_view(), name='new_contact'),
     url(r'^contact/(?P<pk>\d+)/edit/$',EditContactView.as_view(), name='edit_contact'),
-    url(r'^contact/(?P<pk>\d+)/delete/$',DeleteContactView.as_view(), name='delete_contact'),
+    url(r'^contact/(?P<pk>\d+)/delete/$',ContactDelete.as_view(), name='delete_contact'),
 ]
