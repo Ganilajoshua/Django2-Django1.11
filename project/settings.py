@@ -26,8 +26,7 @@ SECRET_KEY = 'c9r+nfw0fq_vf0uu$&_nck0p-=6z%1xhjkk8h=%*ckvef=q6$$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+CRISPY_TEMPLATE_PACK =  'bootstrap4'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ClassViews'
+    'ClassViews',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

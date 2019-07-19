@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+	<br>
     <div class="container">
-    <h1>Contact Delete</h1>
+    <h1>Delete</h1>
+    <a href="/Contact" class="glyphicon glyphicon-chevron-left btn btn-success">Back</a>
 	<form method="post">{% csrf_token %}
-	    Are you sure you want to delete "{{ obj.LastName }}" ?
-	    <input type="submit" value="Submit" />
+	    <p>Are you sure you want to delete {{ object.FirstName }} {{ object.LastName }}'s Contact ?</p>
+	    <input type="submit" value="Delete" class="btn btn-danger" />
 	</form>
     </div>
-    <p>Hi</p>
 {% endblock %}

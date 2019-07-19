@@ -20,11 +20,18 @@ from ClassViews.views import (
     NewContactView,
     EditContactView,
     ContactDelete,
-    )
+    Upload,
+    Export
+)
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^Contact/$', ContactView.as_view(), name='list_contact'),
     url(r'^contact/new/$', NewContactView.as_view(), name='new_contact'),
-    url(r'^contact/(?P<pk>\d+)/edit/$',EditContactView.as_view(), name='edit_contact'),
-    url(r'^contact/(?P<pk>\d+)/delete/$',ContactDelete.as_view(), name='delete_contact'),
+    url(r'^contact/(?P<pk>\d+)/edit/$', EditContactView.as_view(),
+        name='edit_contact'),
+    url(r'^contact/(?P<pk>\d+)/delete/$', ContactDelete.as_view(),
+        name='delete_contact'),
+    url(r'^contacts/upload/$', Upload.as_view(), name='contact_upload'),
+    url(r'^contacts/export/$', Export.as_view(), name='contact_download')
 ]

@@ -1,12 +1,12 @@
 {% extends 'base.html'%}
-
+{% load crispy_forms_tags %}
 {% block title %}Add New Contact{% endblock %}
 
 {% block content %}
     <a href="/Contact" class="glyphicon glyphicon-chevron-left btn btn-success">Back</a>
     <h2>New post</h2>
     <form method="POST" class="">{% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit" class="save btn btn-primary">Save</button>
     </form>
 {% endblock %}
