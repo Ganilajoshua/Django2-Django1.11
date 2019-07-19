@@ -24,10 +24,11 @@ SECRET_KEY = 'c9r+nfw0fq_vf0uu$&_nck0p-=6z%1xhjkk8h=%*ckvef=q6$$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-CRISPY_TEMPLATE_PACK =  'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definition
+LOGIN_REDIRECT_URL = '/Contact'
+LOGOUT_REDIRECT_URL = '/Contact'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'ClassViews.apps.AccountsConfig',
     'ClassViews',
     'crispy_forms',
 ]

@@ -2,18 +2,25 @@
 from __future__ import unicode_literals
 import csv
 import io
-from django.views.generic import TemplateView, View, UpdateView
+from django.views.generic import View, UpdateView, CreateView
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Contact
 from .forms import ContactForm
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+decorators = login_required
 
 
-class ContactView(TemplateView):
+@method_decorator(decorators, name='dispatch')
+class ContactView(View):
     def get(self, request):
-        Contacts = Contact.objects.all()
+        Contacts = Contact.objects.filter(creator=request.user)
         return render(request, 'contacts/contact.html', {'Contacts': Contacts})
 
 
+@method_decorator(decorators, name='dispatch')
 class NewContactView(View):
     def post(self, request):
         form = ContactForm(request.POST)
@@ -29,6 +36,7 @@ class NewContactView(View):
         return render(request, 'contacts/new_contact.html', {'form': form})
 
 
+@method_decorator(decorators, name='dispatch')
 class EditContactView(UpdateView):
     model = Contact
     fields = ('FirstName', 'LastName', 'Address', 'ContactNo')
@@ -42,6 +50,7 @@ class EditContactView(UpdateView):
         return redirect('/Contact')
 
 
+@method_decorator(decorators, name='dispatch')
 class ContactDelete(View):
     template_name = "contacts/contact_confirm_delete.html"
 
@@ -69,6 +78,7 @@ class ContactDelete(View):
         return render(request, self.template_name, context)
 
 
+@method_decorator(decorators, name='dispatch')
 class Upload(View):
 
     def get(self, request):
@@ -105,6 +115,7 @@ class Upload(View):
         return redirect('/Contact')
 
 
+@method_decorator(decorators, name='dispatch')
 class Export(View):
 
     def get(self, request):
@@ -124,3 +135,16 @@ class Export(View):
                 contact.ContactNo,
                 contact.Address])
         return response
+
+
+@method_decorator(decorators, name='dispatch')
+class home(View):
+
+    def get(self, request):
+        return render(request, 'home.html', {})
+
+
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'

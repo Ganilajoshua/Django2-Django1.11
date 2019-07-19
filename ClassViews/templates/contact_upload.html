@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Home{% endblock %}
-
 {% block content %}
     <a href="/Contact" class="glyphicon glyphicon-chevron-left btn btn-success">Back</a>
 
@@ -12,9 +12,13 @@
     {% else %}
     {{order}}
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="file" required>
-        <button type="submit" class="btn btn-success">Upload</button>
+        <div class="form-group">
+            <br>
+            {% csrf_token %}
+            <input class="form-control-file" type="file" name="file" required>
+            <br>
+            <button type="submit" class="btn btn-success">Upload</button>
+        </div>
     </form>
     {% endif%}
 {% endblock %}

@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.contrib.auth import views as auth_views
+from django.conf.urls import url, include
 from ClassViews.views import (
     ContactView,
     NewContactView,
@@ -33,5 +34,9 @@ urlpatterns = [
     url(r'^contact/(?P<pk>\d+)/delete/$', ContactDelete.as_view(),
         name='delete_contact'),
     url(r'^contacts/upload/$', Upload.as_view(), name='contact_upload'),
-    url(r'^contacts/export/$', Export.as_view(), name='contact_download')
+    url(r'^contacts/export/$', Export.as_view(), name='contact_download'),
+    url(r'^', include('ClassViews.urls')),
+    url(r'^accounts/login/$', auth_views.login,
+        {'template_name': 'registration/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/Contact'}, name='logout'),
 ]
